@@ -29,14 +29,94 @@ class Nav_Example_TestUITests: XCTestCase {
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+                                                                                
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    func testRecord() throws {
+                      
+        
+        let app = XCUIApplication()
+        app.buttons["Hello, World!"].tap()
+        app.buttons["Hello, World #2!"].tap()
+        app.buttons["Pop to root"].tap()
+        
+    }
+    
+    func test_using_text_strings() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        app.buttons["Hello, World!"].tap()
+        
+        let heading = app.staticTexts["Two"]
+        XCTAssertEqual(heading.label , "Two") // heading label
+    }
+    
+    func test_using_text_strings2() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        app.buttons["Hello, World!"].tap()
+        
+        let heading2 = app.staticTexts["Two"]
+        XCTAssertEqual(heading2.label , "Two") // heading label
+        
+        app.buttons["Hello, World #2!"].tap()
+        
+        let heading3 = app.staticTexts["Three"]
+        XCTAssertEqual(heading3.label , "Three") // heading label
+    }
+    
+    func test_using_text_strings3() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        app.buttons["Hello, World!"].tap()
+        
+        let heading2 = app.staticTexts["Two"]
+        XCTAssertEqual(heading2.label , "Two") // heading label
+        
+        app.buttons["Hello, World #2!"].tap()
+        
+        let heading3 = app.staticTexts["Three"]
+        XCTAssertEqual(heading3.label , "Three") // heading label
+        
+        app.buttons["Pop to root"].tap()
+        
+        let heading1 = app.staticTexts["Tap-Root"]
+        XCTAssertEqual(heading1.label , "Tap-Root") // heading label
+    }
+    
+    func test_using_accessibilityID() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        app.buttons["button1"].tap()
+        
+        let heading2 = app.staticTexts["Two"]
+        XCTAssertEqual(heading2.label , "Two") // heading label
+        
+        app.buttons["button2"].tap()
+        
+        let heading3 = app.staticTexts["Three"]
+        XCTAssertEqual(heading3.label , "Three") // heading label
+        
+        app.buttons["button3"].tap()
+        
+        let heading1 = app.staticTexts["Tap-Root"]
+        XCTAssertEqual(heading1.label , "Tap-Root") // heading label
+    }
+    
+    func test_BingMe() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        app.buttons["bingme"].exists
+        app.buttons["bell"].exists
+        
+        app.buttons["button1"].tap()
+        
+        let heading2 = app.staticTexts["Two"]
+        XCTAssertEqual(heading2.label , "Two") // heading label
     }
 }
